@@ -1,0 +1,72 @@
+# =================================
+# LangChain / LangGraph
+# =================================
+langgraph
+langchain
+langchain-core
+langchain-community
+
+# =================================
+# LLM Providers
+# =================================
+langchain-google-genai
+langchain-openai
+langchain-groq
+
+# =================================
+# Search / Web
+# =================================
+langchain-tavily
+tavily-python
+requests
+beautifulsoup4
+
+# =================================
+# Airport / Country Data
+# =================================
+airportsdata
+pycountry
+
+# =================================
+# PostgreSQL / LangGraph Persistence
+# =================================
+psycopg[binary]
+psycopg-pool
+langgraph-checkpoint-postgres
+
+# =================================
+# FastAPI Backend
+# =================================
+fastapi
+uvicorn
+
+# =================================
+# Templates
+# =================================
+jinja2
+
+# =================================
+# Environment Variables
+# =================================
+python-dotenv
+
+# =================================
+# Data Validation
+# =================================
+pydantic
+
+# =================================
+# HTTP / Async
+# =================================
+httpx
+aiohttp
+
+# =================================
+# Application UI
+# =================================
+streamlit
+
+# =================================
+# Utilities
+# =================================
+
