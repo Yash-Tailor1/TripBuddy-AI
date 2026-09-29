@@ -1,0 +1,791 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TripBuddy AI — Your AI Travel Planner</title>
+
+    <meta
+        name="description"
+        content="Plan smarter trips with TripBuddy AI. Get flights, hotels, itineraries and travel recommendations in seconds."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+    rel="stylesheet"
+    href="/static/style.css"
+>
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <!-- Navigation -->
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    ✈
+                </div>
+
+                <div class="logo-text">
+                    <span>TripBuddy</span>
+                    <small>AI</small>
+                </div>
+            </a>
+
+            <nav class="nav-links">
+                <a href="#planner">Planner</a>
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How it works</a>
+            </nav>
+
+            <button
+                class="nav-button"
+                onclick="focusPlanner()"
+            >
+                Plan a Trip
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- Main -->
+    <main>
+
+        <!-- Hero -->
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="badge">
+                    <span class="status-dot"></span>
+                    AI Travel Planner
+                </div>
+
+                <h1>
+                    Your next adventure,
+                    <span>planned by AI.</span>
+                </h1>
+
+                <p>
+                    Tell TripBuddy where you want to go, your budget,
+                    duration and preferences. Our AI agents handle the
+                    flights, hotels, sightseeing and itinerary.
+                </p>
+
+                <div class="hero-actions">
+
+                    <button
+                        class="primary-button"
+                        onclick="focusPlanner()"
+                    >
+                        Start Planning
+                        <span>→</span>
+                    </button>
+
+                    <a
+                        href="#how-it-works"
+                        class="secondary-button"
+                    >
+                        See how it works
+                    </a>
+
+                </div>
+
+                <div class="hero-stats">
+
+                    <div>
+                        <strong>✈</strong>
+                        <span>Flight Search</span>
+                    </div>
+
+                    <div>
+                        <strong>⌂</strong>
+                        <span>Hotel Discovery</span>
+                    </div>
+
+                    <div>
+                        <strong>◈</strong>
+                        <span>AI Itinerary</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Hero Visual -->
+            <div class="hero-visual">
+
+                <div class="floating-card card-flight">
+
+                    <div class="mini-icon">✈</div>
+
+                    <div>
+                        <small>Flights</small>
+                        <strong>Best routes found</strong>
+                    </div>
+
+                    <span class="check">✓</span>
+
+                </div>
+
+
+                <div class="destination-card">
+
+                    <div class="destination-image">
+                        <div class="image-overlay"></div>
+
+                        <div class="destination-label">
+                            <small>DISCOVER</small>
+                            <h3>India</h3>
+                        </div>
+                    </div>
+
+                    <div class="destination-info">
+
+                        <div>
+                            <span>7 Days</span>
+                            <strong>Adventure</strong>
+                        </div>
+
+                        <div>
+                            <span>Budget</span>
+                            <strong>₹2L</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="floating-card card-hotel">
+
+                    <div class="mini-icon hotel-icon">⌂</div>
+
+                    <div>
+                        <small>Hotels</small>
+                        <strong>Top stays selected</strong>
+                    </div>
+
+                    <span class="rating">★ 4.8</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Planner -->
+        <section
+            class="planner-section"
+            id="planner"
+        >
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="eyebrow">AI TRAVEL PLANNER</span>
+
+                    <h2>
+                        Where are you going?
+                    </h2>
+                </div>
+
+                <p>
+                    Describe your dream trip in natural language.
+                    TripBuddy will take care of the details.
+                </p>
+
+            </div>
+
+
+            <div class="planner-card">
+
+                <div class="planner-top">
+
+                    <div class="planner-icon">
+                        ✦
+                    </div>
+
+                    <div>
+                        <strong>Tell us about your trip</strong>
+                        <span>TripBuddy AI will plan it for you</span>
+                    </div>
+
+                </div>
+
+
+                <form
+                    id="trip-form"
+                    class="trip-form"
+                >
+
+                    <label for="trip-request">
+                        Your travel request
+                    </label>
+
+                    <div class="textarea-wrapper">
+
+                        <textarea
+                            id="trip-request"
+                            name="query"
+                            rows="5"
+                            placeholder="Example: Plan a 7-day trip to Japan from Mumbai for ₹1.5 lakh, including flights, hotels, sightseeing and local transportation."
+                            required
+                        ></textarea>
+
+                        <div class="textarea-footer">
+
+                            <span id="character-count">
+                                0 characters
+                            </span>
+
+                            <button
+                                type="button"
+                                class="clear-button"
+                                onclick="clearPlanner()"
+                            >
+                                Clear
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Quick prompts -->
+                    <div class="quick-prompts">
+
+                        <span>Try an example:</span>
+
+                        <button
+                            type="button"
+                            onclick="usePrompt('Plan a 7-day India trip from Bangladesh including flights, hotels and sightseeing under ₹2 lakh.')"
+                        >
+                            🇮🇳 India
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="usePrompt('Plan a 7-day Japan trip from Mumbai for ₹1.5 lakh including flights and hotels.')"
+                        >
+                            🇯🇵 Japan
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="usePrompt('Plan a 5-day Dubai trip from Mumbai for ₹1 lakh including flights, hotel and sightseeing.')"
+                        >
+                            🇦🇪 Dubai
+                        </button>
+
+                    </div>
+
+
+                    <div class="form-bottom">
+
+                        <div class="planner-note">
+                            <span>🔒</span>
+                            Your request is processed securely.
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="generate-button"
+                            id="generate-button"
+                        >
+                            <span class="button-icon">✦</span>
+                            <span class="button-text">Plan My Trip</span>
+                            <span class="button-arrow">→</span>
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+        <!-- Loading -->
+        <section
+            id="loading-section"
+            class="loading-section hidden"
+        >
+
+            <div class="loading-card">
+
+                <div class="loader-orbit">
+                    <div class="orbit"></div>
+                    <div class="loader-plane">✈</div>
+                </div>
+
+                <h3>Planning your adventure...</h3>
+
+                <p id="loading-message">
+                    Our AI agents are working on your trip.
+                </p>
+
+                <div class="progress-container">
+                    <div
+                        class="progress-bar"
+                        id="progress-bar"
+                    ></div>
+                </div>
+
+                <div class="agent-status">
+
+                    <div
+                        class="agent active"
+                        id="agent-flight"
+                    >
+                        <span>✈</span>
+                        <div>
+                            <strong>Flights</strong>
+                            <small>Searching routes</small>
+                        </div>
+                    </div>
+
+                    <div
+                        class="agent"
+                        id="agent-hotel"
+                    >
+                        <span>⌂</span>
+                        <div>
+                            <strong>Hotels</strong>
+                            <small>Finding stays</small>
+                        </div>
+                    </div>
+
+                    <div
+                        class="agent"
+                        id="agent-itinerary"
+                    >
+                        <span>✦</span>
+                        <div>
+                            <strong>Itinerary</strong>
+                            <small>Building your trip</small>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Results -->
+        <section
+            id="results-section"
+            class="results-section hidden"
+        >
+
+
+
+            <div class="results-header">
+
+    <div>
+        <span class="eyebrow">YOUR TRIP IS READY</span>
+
+        <h2>
+            Your personalized itinerary
+        </h2>
+    </div>
+
+    <div class="results-actions">
+
+        <button
+            id="download-pdf-button"
+            class="download-pdf-button"
+            onclick="downloadTripPDF()"
+        >
+            📄 Download Trip PDF
+        </button>
+
+        <button
+            class="new-trip-button"
+            onclick="newTrip()"
+        >
+            + New Trip
+        </button>
+
+    </div>
+
+</div>
+
+
+            <div class="result-grid">
+
+                <!-- Summary -->
+                <div class="result-card summary-card">
+
+                    <div class="result-card-header">
+
+                        <div class="result-icon">✦</div>
+
+                        <div>
+                            <span>TRIP SUMMARY</span>
+                            <h3>Your Adventure</h3>
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="trip-summary"
+                        class="result-content"
+                    ></div>
+
+                </div>
+
+
+                <!-- Flights -->
+                <div class="result-card">
+
+                    <div class="result-card-header">
+
+                        <div class="result-icon flight-result-icon">
+                            ✈
+                        </div>
+
+                        <div>
+                            <span>FLIGHTS</span>
+                            <h3>Flight Information</h3>
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="flight-results"
+                        class="result-content"
+                    ></div>
+
+                </div>
+
+
+                <!-- Hotels -->
+                <div class="result-card">
+
+                    <div class="result-card-header">
+
+                        <div class="result-icon hotel-result-icon">
+                            ⌂
+                        </div>
+
+                        <div>
+                            <span>ACCOMMODATION</span>
+                            <h3>Hotel Suggestions</h3>
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="hotel-results"
+                        class="result-content"
+                    ></div>
+
+                </div>
+
+
+                <!-- Itinerary -->
+                <div class="result-card itinerary-card">
+
+                    <div class="result-card-header">
+
+                        <div class="result-icon itinerary-result-icon">
+                            ◈
+                        </div>
+
+                        <div>
+                            <span>DAY BY DAY</span>
+                            <h3>Itinerary</h3>
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="itinerary-results"
+                        class="result-content itinerary-content"
+                    ></div>
+
+                </div>
+
+
+                <!-- Final AI Response -->
+                <div class="result-card final-card">
+
+                    <div class="result-card-header">
+
+                        <div class="result-icon">
+                            ✨
+                        </div>
+
+                        <div>
+                            <span>TRIPBUDDY AI</span>
+                            <h3>Travel Plan</h3>
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="final-response"
+                        class="result-content final-response"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Features -->
+        <section
+            class="features-section"
+            id="features"
+        >
+
+            <div class="section-heading centered">
+
+                <span class="eyebrow">POWERED BY AI AGENTS</span>
+
+                <h2>
+                    Everything you need for your trip
+                </h2>
+
+                <p>
+                    TripBuddy combines multiple AI agents to turn a simple
+                    request into a complete travel plan.
+                </p>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+                <article class="feature-card">
+
+                    <div class="feature-number">01</div>
+
+                    <div class="feature-icon">
+                        ✈
+                    </div>
+
+                    <h3>Smart Flight Search</h3>
+
+                    <p>
+                        Find relevant flight routes based on your
+                        origin, destination and travel requirements.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-number">02</div>
+
+                    <div class="feature-icon">
+                        ⌂
+                    </div>
+
+                    <h3>Hotel Discovery</h3>
+
+                    <p>
+                        Discover suitable hotels and accommodation
+                        options using intelligent web search.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-number">03</div>
+
+                    <div class="feature-icon">
+                        ◈
+                    </div>
+
+                    <h3>AI Itinerary</h3>
+
+                    <p>
+                        Get a practical day-by-day itinerary tailored
+                        to your duration and travel preferences.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-number">04</div>
+
+                    <div class="feature-icon">
+                        ₹
+                    </div>
+
+                    <h3>Budget Conscious</h3>
+
+                    <p>
+                        Tell TripBuddy your budget and get a plan
+                        designed around your spending limit.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- How it works -->
+        <section
+            class="how-section"
+            id="how-it-works"
+        >
+
+            <div class="section-heading centered">
+
+                <span class="eyebrow">HOW IT WORKS</span>
+
+                <h2>
+                    From idea to itinerary
+                </h2>
+
+            </div>
+
+
+            <div class="steps">
+
+                <div class="step">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    <div>
+                        <h3>Describe your trip</h3>
+
+                        <p>
+                            Tell TripBuddy where you want to go,
+                            your budget and how long you want to stay.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="step-line"></div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    <div>
+                        <h3>AI agents collaborate</h3>
+
+                        <p>
+                            Specialized agents search flights,
+                            hotels and travel information.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="step-line"></div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+                    <div>
+                        <h3>Get your trip plan</h3>
+
+                        <p>
+                            Everything is combined into one
+                            easy-to-follow travel itinerary.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <div class="logo">
+                    <div class="logo-icon">✈</div>
+
+                    <div class="logo-text">
+                        <span>TripBuddy</span>
+                        <small>AI</small>
+                    </div>
+                </div>
+
+                <p>
+                    Your intelligent travel companion.
+                </p>
+
+            </div>
+
+            <div class="footer-right">
+                Built with LangGraph · AI · Travel APIs
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- Toast -->
+    <div
+        id="toast"
+        class="toast"
+    >
+        <span id="toast-message"></span>
+    </div>
+
+
+   <script src="/static/script.js"></script>
+
+</body>
+</html>
+
